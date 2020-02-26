@@ -1,0 +1,68 @@
+spring:
+  application:
+    name: authentication
+  datasource:
+    url: jdbc:mysql://172.31.114.252:3306/huifan?&useSSL=false&useUnicode=true&characterEncoding=UTF-8&allowMultiQueries=true
+    username: huiying2019
+    password: xJabXOM6WXrp1Q@#2019
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    type: com.alibaba.druid.pool.DruidDataSource
+    druid:
+      initial-size: 1
+      max-active: 20
+      min-idle: 1
+      max-wait: 60000
+      pool-prepared-statements: true
+      max-pool-prepared-statement-per-connection-size: 20
+      validation-query: SELECT 'x'
+      test-on-borrow: false
+      test-on-return: false
+      test-while-idle: true
+      time-between-connect-error-millis: 60000
+      min-evictable-idle-time-millis: 300000
+      filters: stat
+      web-stat-filter:
+        enabled: true
+        url-pattern: /*
+        session-stat-enable: true
+        session-stat-max-count: 1000
+        profile-enable: true
+      stat-view-servlet:
+        enabled: true
+        url-pattern: /druid/*
+        reset-enable: true
+        login-username: admin
+        login-password: admin
+  redis:
+    host: 172.31.115.238
+    port: 6379
+    timeout: 10000
+    database: 0
+    lettuce:
+      pool:
+        max-wait: 1
+        max-idle: 8
+        max-active: 8
+        min-idle: 0
+    password: GvTcuKSLxFY!@#2019
+
+eureka:
+  instance:
+    prefer-ip-address: true
+  client:
+    service-url:
+      defaultZone: http://172.31.115.119:8761/eureka/
+mybatis:
+  mapper-locations: classpath*:/mybatis/mappers/*.xml
+  type-aliases-package: com.zjhzenticationservice.domain
+  config-location: classpath:mybatis/mybatis-config.xml
+
+server:
+  port: 8081
+
+logging:
+  config: classpath:log4j2.xml
+  level:
+    root: info
+
+redisTime: 12
