@@ -1,0 +1,18 @@
+
+========================================***代码规范***========================================
+
+1.包的结构必须按照该项目命名
+2.dto 存放返回前端界面的字段，最后返回给controller，在service中做转换，不能直接把vo对象返回给controller
+3.vo 返回mapper.xml中的实体
+4.pvo 接收前端传入的参数 只能出现在contrroler 和servicer
+5.domain 数据库实体 必须不能做任何修改 做一个历史备份 用于忘了备份sql文件下还原数据库表结构
+6.service 中只能做业务接口的声明，servicerimpl 去实现该接口的业务，如果一个方法代码太多，必须拆成多个方法统一去调用。
+7.controller 中尽量不要写业务。
+8.mapper.xml 中必须不能出现 “select *”
+9.尽量能封装的类都要抽象出来。
+10.业务异常 必须要声明出来 ，放到枚举中，定义code 和 msg
+11.每一个pvo 、dto 、controller 必须加上API接口信息 *重要*
+12.每一个dao、servicer 中的接口必须加上注释 方法描述 ，参数描述  返回值描述 。 *重要*
+13.业务服务中 application.yml 只能放 spring.profiles.active=【profile】 其他的只能在aplication-[profiler].yml中书写
+14.工具类希望多多用到。
+

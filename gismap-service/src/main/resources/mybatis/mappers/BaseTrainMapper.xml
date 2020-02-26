@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjhz.gismap.dao.BaseTrainMapper" >
+  <resultMap id="BaseResultMap" type="com.zjhz.gismap.vo.BaseTrainVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cn_name" property="cnName" jdbcType="VARCHAR" />
+    <result column="en_name" property="enName" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="VARCHAR" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="VARCHAR" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zjhz_base_train
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zjhz.gismap.vo.BaseTrainVO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zjhz_base_train (cn_name, en_name, lon, 
+      lat, address, description, 
+      create_user, create_date, update_user, 
+      update_date, is_deleted)
+    values (#{cnName,jdbcType=VARCHAR}, #{enName,jdbcType=VARCHAR}, #{lon,jdbcType=VARCHAR}, 
+      #{lat,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, #{description,jdbcType=VARCHAR}, 
+      #{createUser,jdbcType=VARCHAR}, #{createDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=VARCHAR}, 
+      #{updateDate,jdbcType=TIMESTAMP}, #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zjhz.gismap.vo.BaseTrainVO" >
+    update zjhz_base_train
+    set cn_name = #{cnName,jdbcType=VARCHAR},
+      en_name = #{enName,jdbcType=VARCHAR},
+      lon = #{lon,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=VARCHAR},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=VARCHAR},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_deleted = #{isDeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, cn_name, en_name, lon, lat, address, description, create_user, create_date, 
+    update_user, update_date, is_deleted
+    from zjhz_base_train
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, cn_name, en_name, lon, lat, address, description, create_user, create_date, 
+    update_user, update_date, is_deleted
+    from zjhz_base_train
+  </select>
+</mapper>

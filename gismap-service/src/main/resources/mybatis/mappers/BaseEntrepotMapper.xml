@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjhz.gismap.dao.BaseEntrepotMapper" >
+  <resultMap id="BaseResultMap" type="com.zjhz.gismap.vo.BaseEntrepotVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="cname" property="cname" jdbcType="VARCHAR" />
+    <result column="ename" property="ename" jdbcType="VARCHAR" />
+    <result column="area" property="area" jdbcType="VARCHAR" />
+    <result column="lon" property="lon" jdbcType="VARCHAR" />
+    <result column="lat" property="lat" jdbcType="VARCHAR" />
+    <result column="address" property="address" jdbcType="VARCHAR" />
+    <result column="of_add" property="ofAdd" jdbcType="VARCHAR" />
+    <result column="size" property="size" jdbcType="VARCHAR" />
+    <result column="regional" property="regional" jdbcType="VARCHAR" />
+    <result column="description" property="description" jdbcType="VARCHAR" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="is_enable" property="isEnable" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zjhz_base_entrepot
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zjhz.gismap.vo.BaseEntrepotVO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zjhz_base_entrepot (cname, ename, area, 
+      lon, lat, address, 
+      of_add, `size`, regional, 
+      description, create_user, create_date, 
+      update_user, update_date, is_enable, 
+      is_deleted)
+    values (#{cname,jdbcType=VARCHAR}, #{ename,jdbcType=VARCHAR}, #{area,jdbcType=VARCHAR}, 
+      #{lon,jdbcType=VARCHAR}, #{lat,jdbcType=VARCHAR}, #{address,jdbcType=VARCHAR}, 
+      #{ofAdd,jdbcType=VARCHAR}, #{size,jdbcType=VARCHAR}, #{regional,jdbcType=VARCHAR}, 
+      #{description,jdbcType=VARCHAR}, #{createUser,jdbcType=INTEGER}, #{createDate,jdbcType=TIMESTAMP}, 
+      #{updateUser,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, #{isEnable,jdbcType=INTEGER}, 
+      #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zjhz.gismap.vo.BaseEntrepotVO" >
+    update zjhz_base_entrepot
+    set cname = #{cname,jdbcType=VARCHAR},
+      ename = #{ename,jdbcType=VARCHAR},
+      area = #{area,jdbcType=VARCHAR},
+      lon = #{lon,jdbcType=VARCHAR},
+      lat = #{lat,jdbcType=VARCHAR},
+      address = #{address,jdbcType=VARCHAR},
+      of_add = #{ofAdd,jdbcType=VARCHAR},
+      `size` = #{size,jdbcType=VARCHAR},
+      regional = #{regional,jdbcType=VARCHAR},
+      description = #{description,jdbcType=VARCHAR},
+      create_user = #{createUser,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_enable = #{isEnable,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, cname, ename, area, lon, lat, address, of_add, `size`, regional, description, 
+    create_user, create_date, update_user, update_date, is_enable, is_deleted
+    from zjhz_base_entrepot
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, cname, ename, area, lon, lat, address, of_add, `size`, regional, description, 
+    create_user, create_date, update_user, update_date, is_enable, is_deleted
+    from zjhz_base_entrepot
+  </select>
+</mapper>
