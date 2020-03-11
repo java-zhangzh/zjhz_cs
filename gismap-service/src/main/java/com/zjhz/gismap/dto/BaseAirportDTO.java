@@ -1,7 +1,6 @@
 package com.zjhz.gismap.dto;
 
 import com.zjhz.gismap.vo.BaseAirportVO;
-import com.zjhz.gismap.vo.BaseBusStationVO;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.Data;
 import org.springframework.beans.BeanUtils;

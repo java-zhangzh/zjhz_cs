@@ -4,8 +4,8 @@ import com.zjhz.base.constants.Constant;
 
 import com.zjhz.gismap.util.ReverseUtil;
 
-import com.zjhz.util.SendSmsUtil;
-import com.zjhz.util.TimeUtil;
+//import com.zjhz.util.SendSmsUtil;
+//import com.zjhz.util.TimeUtil;
 import org.apache.hadoop.hbase.client.Connection;
 import org.apache.hadoop.hbase.client.ResultScanner;
 import org.springframework.beans.factory.annotation.Autowired;
