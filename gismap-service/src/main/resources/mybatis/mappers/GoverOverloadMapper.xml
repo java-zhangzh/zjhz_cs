@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.zjhz.gismap.dao.GoverOverloadMapper" >
+  <resultMap id="BaseResultMap" type="com.zjhz.gismap.vo.GoverOverloadVO" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="check_station_id" property="checkStationId" jdbcType="INTEGER" />
+    <result column="road_id" property="roadId" jdbcType="INTEGER" />
+    <result column="overload_type" property="overloadType" jdbcType="VARCHAR" />
+    <result column="time" property="time" jdbcType="TIMESTAMP" />
+    <result column="car_count" property="carCount" jdbcType="INTEGER" />
+    <result column="create_user" property="createUser" jdbcType="INTEGER" />
+    <result column="create_date" property="createDate" jdbcType="TIMESTAMP" />
+    <result column="update_user" property="updateUser" jdbcType="INTEGER" />
+    <result column="update_date" property="updateDate" jdbcType="TIMESTAMP" />
+    <result column="is_enable" property="isEnable" jdbcType="INTEGER" />
+    <result column="is_deleted" property="isDeleted" jdbcType="INTEGER" />
+  </resultMap>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from zjhz_gover_overload
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.zjhz.gismap.vo.GoverOverloadVO" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into zjhz_gover_overload (check_station_id, road_id, overload_type, 
+      `time`, car_count, create_user, 
+      create_date, update_user, update_date, 
+      is_enable, is_deleted)
+    values (#{checkStationId,jdbcType=INTEGER}, #{roadId,jdbcType=INTEGER}, #{overloadType,jdbcType=VARCHAR}, 
+      #{time,jdbcType=TIMESTAMP}, #{carCount,jdbcType=INTEGER}, #{createUser,jdbcType=INTEGER}, 
+      #{createDate,jdbcType=TIMESTAMP}, #{updateUser,jdbcType=INTEGER}, #{updateDate,jdbcType=TIMESTAMP}, 
+      #{isEnable,jdbcType=INTEGER}, #{isDeleted,jdbcType=INTEGER})
+  </insert>
+  <update id="updateByPrimaryKey" parameterType="com.zjhz.gismap.vo.GoverOverloadVO" >
+    update zjhz_gover_overload
+    set check_station_id = #{checkStationId,jdbcType=INTEGER},
+      road_id = #{roadId,jdbcType=INTEGER},
+      overload_type = #{overloadType,jdbcType=VARCHAR},
+      `time` = #{time,jdbcType=TIMESTAMP},
+      car_count = #{carCount,jdbcType=INTEGER},
+      create_user = #{createUser,jdbcType=INTEGER},
+      create_date = #{createDate,jdbcType=TIMESTAMP},
+      update_user = #{updateUser,jdbcType=INTEGER},
+      update_date = #{updateDate,jdbcType=TIMESTAMP},
+      is_enable = #{isEnable,jdbcType=INTEGER},
+      is_deleted = #{isDeleted,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select id, check_station_id, road_id, overload_type, `time`, car_count, create_user, 
+    create_date, update_user, update_date, is_enable, is_deleted
+    from zjhz_gover_overload
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <select id="selectAll" resultMap="BaseResultMap" >
+    select id, check_station_id, road_id, overload_type, `time`, car_count, create_user, 
+    create_date, update_user, update_date, is_enable, is_deleted
+    from zjhz_gover_overload
+  </select>
+</mapper>
